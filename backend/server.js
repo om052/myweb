@@ -36,9 +36,16 @@ app.use("/api/chat", require("./routes/chat"));
 app.use("/api/shortfilm", require("./routes/shortfilm"));
 app.use("/api/requests", require("./routes/requests"));
 
+
+
+// Serve frontend
+// Serve frontend
+app.use(express.static(path.join(__dirname, "../frontend")));
+
+
 // test route
 app.get("/", (req, res) => {
-    res.send("Backend running successfully 🚀");
+    res.sendFile(path.join(__dirname, "../frontend/index.html"));
 });
 
 // connect mongodb
@@ -47,10 +54,10 @@ mongoose.connect(process.env.MONGO_URI)
     console.log("MongoDB Connected");
 
     // Populate sample data for testing
-    await populateSampleData();
+    // await populateSampleData();
 
-    // Ensure admin user exists
-    await createAdminUser();
+    // // Ensure admin user exists
+    // await createAdminUser();
 })
 .catch(err => console.log("Mongo error:", err));
 
@@ -341,7 +348,7 @@ app.use((err, req, res, next) => {
 });
 
 // Static file serving (after API routes to avoid conflicts)
-app.use(express.static(path.join(__dirname, "../frontend")));
+
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Socket.io
@@ -423,6 +430,7 @@ io.on('connection', (socket) => {
     });
 });
 
-server.listen(3000, () => {
-    console.log("Server running on http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
