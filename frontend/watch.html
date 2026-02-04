@@ -600,7 +600,7 @@
 
         async function loadUser() {
             try {
-                const res = await fetch('http://localhost:3000/api/auth/me', {
+                const res = await fetch('/api/auth/me', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 if (res.ok) {
@@ -622,7 +622,7 @@
                 if (genre) params.append('genre', genre);
                 if (sort) params.append('sort', sort);
 
-                const res = await fetch(`http://localhost:3000/api/shortfilm?${params}`);
+                const res = await fetch(`/api/shortfilm?${params}`);
                 const films = await res.json();
                 displayFilms(films);
             } catch (err) {
@@ -687,7 +687,7 @@
 
         async function playFilm(filmId) {
             try {
-                const res = await fetch(`http://localhost:3000/api/shortfilm/${filmId}`);
+                const res = await fetch(`/api/shortfilm/${filmId}`);
                 const film = await res.json();
 
                 currentFilmId = filmId;
@@ -725,7 +725,7 @@
             const countSpan = btn.querySelector('span') || btn.nextElementSibling;
 
             try {
-                const res = await fetch(`http://localhost:3000/api/shortfilm/${filmId}/like`, {
+                const res = await fetch(`/api/shortfilm/${filmId}/like`, {
                     method: 'POST',
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
@@ -752,7 +752,7 @@
 
         async function loadComments() {
             try {
-                const res = await fetch(`http://localhost:3000/api/shortfilm/${currentFilmId}/comments`);
+                const res = await fetch(`/api/shortfilm/${currentFilmId}/comments`);
                 const comments = await res.json();
 
                 const commentsList = document.getElementById('commentsList');
@@ -773,7 +773,7 @@
             if (!text) return;
 
             try {
-                const res = await fetch(`http://localhost:3000/api/shortfilm/${currentFilmId}/comment`, {
+                const res = await fetch(`/api/shortfilm/${currentFilmId}/comment`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

@@ -252,7 +252,7 @@
         // Load chat history
         async function loadMessages() {
             try {
-                const res = await fetch(`http://localhost:3000/api/chat/${chatroomId}`, {
+                const res = await fetch(`/api/chat/${chatroomId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 const messages = await res.json();
@@ -359,7 +359,7 @@
                 formData.append('file', file);
                 formData.append('projectId', chatroomId);
 
-                fetch('http://localhost:3000/api/chat/upload', {
+                fetch('/api/chat/upload', {
                     method: 'POST',
                     headers: { Authorization: `Bearer ${token}` },
                     body: formData
@@ -382,7 +382,7 @@
         function editMessage(messageId, currentMessage) {
             const newMessage = prompt('Edit message:', currentMessage);
             if (newMessage && newMessage !== currentMessage) {
-                fetch(`http://localhost:3000/api/chat/${messageId}`, {
+                fetch(`/api/chat/${messageId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -401,7 +401,7 @@
         // Delete message
         function deleteMessage(messageId) {
             if (confirm('Delete this message?')) {
-                fetch(`http://localhost:3000/api/chat/${messageId}`, {
+                fetch(`/api/chat/${messageId}`, {
                     method: 'DELETE',
                     headers: { Authorization: `Bearer ${token}` }
                 })
@@ -545,7 +545,7 @@
         };
 
         // Get current user
-        fetch('http://localhost:3000/api/auth/me', {
+        fetch('/api/auth/me', {
             headers: { Authorization: `Bearer ${token}` }
         })
         .then(res => res.json())

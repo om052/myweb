@@ -708,7 +708,7 @@
             const category = document.getElementById('categoryFilter').value;
             
             try {
-                const res = await fetch(`http://localhost:3000/api/script?genre=${genre}&category=${category}`, {
+                const res = await fetch(`/api/script?genre=${genre}&category=${category}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 const scripts = await res.json();
@@ -751,7 +751,7 @@
         async function openScriptModal(scriptId) {
             currentScriptId = scriptId;
             try {
-                const res = await fetch(`http://localhost:3000/api/script/${scriptId}`, {
+                const res = await fetch(`/api/script/${scriptId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 const script = await res.json();
@@ -797,7 +797,7 @@
             formData.append('file', document.getElementById('uploadFile').files[0]);
 
             try {
-                const res = await fetch('http://localhost:3000/api/script/upload', {
+                const res = await fetch('/api/script/upload', {
                     method: 'POST',
                     headers: { Authorization: `Bearer ${token}` },
                     body: formData
@@ -825,7 +825,7 @@
             };
 
             try {
-                const res = await fetch('http://localhost:3000/api/script/create', {
+                const res = await fetch('/api/script/create', {
                     method: 'POST',
                     headers: { 
                         'Content-Type': 'application/json',
@@ -846,7 +846,7 @@
         async function saveScript() {
             const content = document.getElementById('editContent').value;
             try {
-                const res = await fetch(`http://localhost:3000/api/script/${currentScriptId}`, {
+                const res = await fetch(`/api/script/${currentScriptId}`, {
                     method: 'PUT',
                     headers: { 
                         'Content-Type': 'application/json',
@@ -864,7 +864,7 @@
 
         async function loadComments() {
             try {
-                const res = await fetch(`http://localhost:3000/api/script/${currentScriptId}/comments`, {
+                const res = await fetch(`/api/script/${currentScriptId}/comments`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 const comments = await res.json();
@@ -885,7 +885,7 @@
             const text = document.getElementById('commentText').value;
             const scene = document.getElementById('commentScene').value;
             try {
-                const res = await fetch(`http://localhost:3000/api/script/${currentScriptId}/comment`, {
+                const res = await fetch(`/api/script/${currentScriptId}/comment`, {
                     method: 'POST',
                     headers: { 
                         'Content-Type': 'application/json',
@@ -905,7 +905,7 @@
 
         async function loadVersions() {
             try {
-                const res = await fetch(`http://localhost:3000/api/script/${currentScriptId}`, {
+                const res = await fetch(`/api/script/${currentScriptId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 const script = await res.json();
@@ -925,7 +925,7 @@
 
         async function restoreVersion(version) {
             try {
-                const res = await fetch(`http://localhost:3000/api/script/${currentScriptId}/restore/${version}`, {
+                const res = await fetch(`/api/script/${currentScriptId}/restore/${version}`, {
                     method: 'POST',
                     headers: { Authorization: `Bearer ${token}` }
                 });
@@ -939,7 +939,7 @@
 
         async function loadCollaborators() {
             try {
-                const res = await fetch(`http://localhost:3000/api/script/${currentScriptId}`, {
+                const res = await fetch(`/api/script/${currentScriptId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 const script = await res.json();
@@ -958,7 +958,7 @@
         async function inviteCollaborator() {
             const email = document.getElementById('inviteEmail').value;
             try {
-                const res = await fetch(`http://localhost:3000/api/script/${currentScriptId}/collaborate`, {
+                const res = await fetch(`/api/script/${currentScriptId}/collaborate`, {
                     method: 'POST',
                     headers: { 
                         'Content-Type': 'application/json',

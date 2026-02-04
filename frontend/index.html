@@ -812,7 +812,7 @@
         // Fetch and populate showcase projects
         async function loadShowcase() {
             try {
-                const response = await fetch('http://localhost:3000/api/scripts/public');
+                const response = await fetch('/api/scripts/public');
                 const scripts = await response.json();
 
                 const showcaseGrid = document.getElementById('showcase-grid');
@@ -854,7 +854,7 @@
         // Fetch and populate stats
         async function loadStats() {
             try {
-                const response = await fetch('http://localhost:3000/api/scripts/stats');
+                const response = await fetch('/api/scripts/stats');
                 const stats = await response.json();
 
                 const statsContainer = document.getElementById('stats');

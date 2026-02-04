@@ -316,7 +316,7 @@
         let userEmail = "";
 
         // Load user data
-        fetch("http://localhost:3000/api/auth/me", {
+        fetch("/api/auth/me", {
             headers: {
                 Authorization: "Bearer " + token
             }
@@ -335,7 +335,7 @@
         // Load profile
         async function loadProfile() {
             try {
-                const res = await fetch(`http://localhost:3000/api/profile/${userEmail}`);
+                const res = await fetch(`/api/profile/${userEmail}`);
                 if (res.ok) {
                     const profile = await res.json();
                     // Populate form fields
@@ -419,7 +419,7 @@
             console.log("Sending data:", data);
 
             try {
-                const res = await fetch("http://localhost:3000/api/profile/save", {
+                const res = await fetch("/api/profile/save", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(data)

@@ -884,7 +884,7 @@
 
         async function loadReceivedRequests() {
             try {
-                const res = await fetch('http://localhost:3000/api/requests/received', {
+                const res = await fetch('/api/requests/received', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 const requests = await res.json();
@@ -897,7 +897,7 @@
 
         async function loadSentRequests() {
             try {
-                const res = await fetch('http://localhost:3000/api/requests/sent', {
+                const res = await fetch('/api/requests/sent', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 const requests = await res.json();
@@ -910,7 +910,7 @@
 
         async function loadAvailableProjects() {
             try {
-                const res = await fetch('http://localhost:3000/api/requests/projects', {
+                const res = await fetch('/api/requests/projects', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 const projects = await res.json();
@@ -1076,7 +1076,7 @@
             submitBtn.querySelector('.btn-text').textContent = 'Sending...';
 
             try {
-                const res = await fetch('http://localhost:3000/api/requests/send', {
+                const res = await fetch('/api/requests/send', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -1145,7 +1145,7 @@
             }
 
             try {
-                const res = await fetch(`http://localhost:3000/api/requests/${requestId}/accept`, {
+                const res = await fetch(`/api/requests/${requestId}/accept`, {
                     method: 'POST',
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
@@ -1202,7 +1202,7 @@
             }
 
             try {
-                const res = await fetch(`http://localhost:3000/api/requests/${requestId}/reject`, {
+                const res = await fetch(`/api/requests/${requestId}/reject`, {
                     method: 'POST',
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
